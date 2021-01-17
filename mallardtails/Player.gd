@@ -1,13 +1,15 @@
 extends KinematicBody2D
 
 
-export (int) var speed = 250
-export (int) var jump_speed = -1100
-export (int) var gravity = 3000
+export (int) var speed = 185
+export (int) var jump_speed = -700
+export (int) var gravity = 2050
 var velocity = Vector2.ZERO
 
 func get_input():
 	velocity.x = 0
+#	if velocity.y == 0:
+#		$PlayerSprite.play("standing")
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().paused = true
 	if Input.is_action_pressed("ui_right"):
@@ -24,31 +26,16 @@ func _physics_process(delta):
 			velocity.y = jump_speed
 	elif Input.is_action_pressed("ui_right"):
 		$PlayerSprite.flip_h = false
-		$PlayerSprite.play("walking")
+		$PlayerSprite.play("move")
 	elif Input.is_action_pressed("ui_left"):
 		$PlayerSprite.flip_h = true
-		$PlayerSprite.play("walking")
+		$PlayerSprite.play("move")
 	else:
-		$PlayerSprite.play("standing")
+		$PlayerSprite.play("stand")
 	if !is_on_floor():
-		$PlayerSprite.play("jumping")
+		$PlayerSprite.play("jump")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_Area2D_body_entered(body):
-	get_tree().paused = true
-	print("Game Over!")
-
-
-func _on_Goal_body_entered(body):
-	get_tree().paused = true
-	print("Well Done!")

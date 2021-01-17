@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-export (int) var speed = 185
+export (int) var speed = 200
 export (int) var jump_speed = -700
 export (int) var gravity = 2050
 var velocity = Vector2.ZERO
@@ -26,14 +26,14 @@ func _physics_process(delta):
 			velocity.y = jump_speed
 	elif Input.is_action_pressed("ui_right"):
 		$PlayerSprite.flip_h = false
-		$PlayerSprite.play("move")
+		$PlayerSprite.play("walking")
 	elif Input.is_action_pressed("ui_left"):
 		$PlayerSprite.flip_h = true
-		$PlayerSprite.play("move")
+		$PlayerSprite.play("walking")
 	else:
-		$PlayerSprite.play("stand")
+		$PlayerSprite.play("standing")
 	if !is_on_floor():
-		$PlayerSprite.play("jump")
+		$PlayerSprite.play("jumping")
 
 
 # Called when the node enters the scene tree for the first time.

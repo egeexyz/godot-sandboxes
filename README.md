@@ -1,2 +1,2 @@
 # mallard-tails
-A bootleg clone of an old game featuring ducks &amp; tales
+An unfinished clone of DuckTales on NES written with Godot.

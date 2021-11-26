@@ -7,8 +7,6 @@ var velocity = Vector2.ZERO
 
 func get_input():
 	velocity.x = 0
-#	if velocity.y == 0:
-#		$PlayerSprite.play("standing")
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().paused = true
 	if Input.is_action_pressed("ui_right"):
@@ -16,11 +14,8 @@ func get_input():
 	if Input.is_action_pressed("ui_left"):
 		velocity.x -= speed
 
-func set_camera():
-	get_node("/root/EgPlatformer/Camera").position = position
-
 func _physics_process(delta):
-	set_camera()
+#	set_camera()
 	get_input()
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
@@ -42,4 +37,5 @@ func _physics_process(delta):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
+#	set_camera()
 #	position = get_node("PlayerSprite").position
